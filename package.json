@@ -1,0 +1,19 @@
+{
+  "name": "virtual-element",
+  "version": "1.0.0",
+  "repository": "dekujs/virtual-element",
+  "description": "Build virtual tree elements",
+  "main": "index.js",
+  "devDependencies": {
+    "babelify": "^6.1.1",
+    "mocha": "^2.2.5",
+    "mochify": "^2.1.1",
+    "standard": "^3.6.1"
+  },
+  "dependencies": {
+    "sliced": "0.0.5"
+  },
+  "scripts": {
+    "test": "standard index.js && mochify --node --transform [ babelify --jsxPragma element ]"
+  }
+}
