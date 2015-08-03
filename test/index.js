@@ -41,6 +41,14 @@ it('it should allow using array spread on children', function () {
   assert(node.children[0].type === 'span')
 })
 
+it('it should flatten nested children', function () {
+  var node = element('div', null, [
+    [element('span')]
+  ])
+  assert(node.children.length === 1)
+  assert(node.children[0].type === 'span')
+})
+
 it('should allow a single DOM node as a child', function () {
   var node = element('div', null, element('span'))
   assert(node.children[0].type === 'span')

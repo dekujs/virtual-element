@@ -3,6 +3,7 @@
  */
 
 var slice = require('sliced')
+var flatten = require('array-flatten')
 
 /**
  * This function lets us create virtual nodes using a simple
@@ -60,6 +61,9 @@ function element (type, attributes, children) {
   if (!Array.isArray(children)) {
     children = [children]
   }
+
+  // Flatten nested child arrays. This is how JSX compiles some nodes.
+  children = flatten(children, 2)
 
   // if you pass in a function, it's a `Component` constructor.
   // otherwise it's an element.
