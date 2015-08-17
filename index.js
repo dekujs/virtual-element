@@ -49,7 +49,7 @@ function element (type, attributes, children) {
 
   // Account for JSX putting the children as multiple arguments.
   // This is essentially just the ES6 rest param
-  if (arguments.length > 2 && Array.isArray(arguments[2]) === false) {
+  if (arguments.length > 2 && children && Array.isArray(arguments[2]) === false) {
     children = slice(arguments, 2)
   }
 

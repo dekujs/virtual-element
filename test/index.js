@@ -74,6 +74,22 @@ it('should allow skipping attributes and using a single child', function () {
   assert(node.children[0] === 'foo')
 })
 
+it('should not treat undefined as a child', function () {
+  var node
+
+  node = element('div')
+  assert.strictEqual(node.children.length, 0)
+
+  node = element('div', undefined)
+  assert.strictEqual(node.children.length, 0)
+
+  node = element('div', {})
+  assert.strictEqual(node.children.length, 0)
+
+  node = element('div', {}, undefined)
+  assert.strictEqual(node.children.length, 0)
+})
+
 it('render nodes that work with JSX', function(){
   assert.deepEqual(
     <div class="one" id="foo">Hello World</div>,
