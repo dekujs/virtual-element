@@ -74,6 +74,27 @@ it('should allow skipping attributes and using a single child', function () {
   assert(node.children[0] === 'foo')
 })
 
+it('should allow sparse lists of children', function () {
+  var node
+
+  node = element('div', {}, null, 'a', 'b', null, 'c')
+  assert(node.children.length, 5)
+
+  // even w/o attrs
+  node = element('div', 'a', null, 'c')
+  assert(node.children.length, 3)
+})
+
+it('should allow nested arrays as children', function () {
+  var node
+
+  node = element('div', {}, null, [ 'a', 'b' ], 'c')
+  assert(node.children.length, 3)
+
+  node = element('div', null, [ 'a', 'b' ], 'c')
+  assert(node.children.length, 3)
+})
+
 it('should not treat undefined as a child', function () {
   var node
 
