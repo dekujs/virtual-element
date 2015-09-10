@@ -49,7 +49,7 @@ function element (type, attributes, children) {
 
   // Account for JSX putting the children as multiple arguments.
   // This is essentially just the ES6 rest param
-  if (arguments.length > 2 && typeof children !== 'undefined') {
+  if (arguments.length > 2) {
     children = slice(arguments, 2)
   }
 
@@ -58,6 +58,9 @@ function element (type, attributes, children) {
 
   // Flatten nested child arrays. This is how JSX compiles some nodes.
   children = flatten(children, 2)
+
+  // Filter out any `undefined` elements
+  children = children.filter(function (i) { return typeof i !== 'undefined' })
 
   // if you pass in a function, it's a `Component` constructor.
   // otherwise it's an element.
