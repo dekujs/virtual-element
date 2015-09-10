@@ -111,13 +111,6 @@ it('should not treat undefined as a child', function () {
   assert.strictEqual(node.children.length, 0)
 })
 
-it('should not ignore subsequent children when the first is undefined', function () {
-  var node
-
-  node = element('div', {}, undefined, 'a')
-  assert.strictEqual(node.children.length, 1)
-})
-
 it('render nodes that work with JSX', function(){
   assert.deepEqual(
     <div class="one" id="foo">Hello World</div>,
