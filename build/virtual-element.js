@@ -44,27 +44,24 @@ function element (type, attributes, children) {
   // Skipped adding attributes and we're passing
   // in children instead.
   if (arguments.length === 2 && (typeof attributes === 'string' || Array.isArray(attributes))) {
-    children = attributes
+    children = [ attributes ]
     attributes = {}
   }
 
   // Account for JSX putting the children as multiple arguments.
   // This is essentially just the ES6 rest param
-  if (arguments.length > 2 && children && Array.isArray(arguments[2]) === false) {
+  if (arguments.length > 2) {
     children = slice(arguments, 2)
   }
 
   children = children || []
   attributes = attributes || {}
 
-  // passing in a single child, you can skip
-  // using the array
-  if (!Array.isArray(children)) {
-    children = [children]
-  }
-
   // Flatten nested child arrays. This is how JSX compiles some nodes.
   children = flatten(children, 2)
+
+  // Filter out any `undefined` elements
+  children = children.filter(function (i) { return typeof i !== 'undefined' })
 
   // if you pass in a function, it's a `Component` constructor.
   // otherwise it's an element.
